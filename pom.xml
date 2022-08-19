@@ -10,10 +10,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>4.2.1_259</version>
-        </dependency>
+         <groupId>net.dv8tion</groupId>
+         <artifactId>JDA</artifactId>
+         <version>5.0.0-alpha.17</version> 
+         </dependency>
         <dependency>
             <groupId>com.jagrosh</groupId>
             <artifactId>jda-utilities-commons</artifactId>
