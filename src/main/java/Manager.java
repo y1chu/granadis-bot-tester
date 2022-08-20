@@ -1,4 +1,5 @@
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,8 @@ public class Manager {
 
     Manager() {
         addCommand(new RandomHentai());
-
+        addCommand(new AllTag());
+        addCommand(new DailyHentai());
     }
 
     private void addCommand(CommandInterface c) {
@@ -33,11 +35,9 @@ public class Manager {
         return commands.get(commandName);
     }
 
-    void run(GuildMessageReceivedEvent event) {
+    void run(GuildMessageReceivedEvent event) throws IOException {
         final String msg = event.getMessage().getContentRaw();
-        System.out.println(msg);
         if (!msg.startsWith(SourceLink.BOT_PREFIX)) {
-            System.out.println("hi");
             return;
         }
         final String[] split = msg.replaceFirst("(?i)" + Pattern.quote(SourceLink.BOT_PREFIX), "").split("\\s+");

@@ -1,15 +1,8 @@
-import Commands.*;
-// import Events.*;
 import Sources.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.utils.ChunkingFilter;
-import net.dv8tion.jda.api.utils.MemberCachePolicy;
-import org.jetbrains.annotations.NotNull;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,7 +22,7 @@ public class RunBot extends ListenerAdapter {
     }
 
     public static class timerPresence extends TimerTask {
-        String[] presenceList = {"Hentai | HThelp", "Total Guilds: " + guildNum, "test msg", "another test msg", "rory","hello"};
+        String[] presenceList = {"Hentai | -help", "Total Guilds: " + guildNum, "test msg", "another test msg", "rory","hello"};
         @Override
         public void run() {
             // timer to get n

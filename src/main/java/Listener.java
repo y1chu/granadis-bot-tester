@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Listener extends ListenerAdapter {
 
@@ -16,6 +18,10 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
-        m.run(event);
+        try {
+            m.run(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
