@@ -1,6 +1,5 @@
 package Interface;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.FileNotFoundException;

@@ -1,8 +1,8 @@
-import java.io.FileNotFoundException;
+package Bot;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
-
 import Commands.*;
 import Interface.CommandInterface;
 import Sources.SourceLink;
@@ -16,6 +16,11 @@ public class Manager {
         addCommand(new RandomHentai());
         addCommand(new AllTag());
         addCommand(new DailyHentai());
+        addCommand(new RemoveDailyHentai());
+        addCommand(new Help(this));
+        addCommand(new Support());
+        addCommand(new Recommend());
+
     }
 
     private void addCommand(CommandInterface c) {

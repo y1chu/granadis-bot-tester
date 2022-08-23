@@ -1,1 +1,1 @@
-Worker: java src/main/java/RunBot.java
+Worker: java src/main/java/Bot.RunBot.java

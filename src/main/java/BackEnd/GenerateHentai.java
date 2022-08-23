@@ -1,7 +1,6 @@
 package BackEnd;
 
 import Sources.SourceLink;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,8 +15,7 @@ public class GenerateHentai {
         List<String> sourceAsList = new ArrayList<>();
 
         while (readSource.hasNext()) {
-            String code = readSource.nextLine();
-            sourceAsList.add(code);
+            sourceAsList.add(readSource.nextLine());
         }
         File bannedSource = new File(SourceLink.BANNED);
         Scanner banned = new Scanner(bannedSource);

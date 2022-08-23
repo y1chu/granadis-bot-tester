@@ -1,10 +1,9 @@
-import Sources.SourceLink;
+package Bot;
+
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-
 import javax.annotation.Nonnull;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Listener extends ListenerAdapter {

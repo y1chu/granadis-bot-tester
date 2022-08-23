@@ -4,8 +4,6 @@ import Interface.CommandInterface;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,12 +22,19 @@ public class SourceLink {
     public static String BOT_TOKEN = "ODY3ODg0ODAxNDY4OTIzOTQ0.Ga_NEv.DUn8fu56VlbwGAxa-dwr5Z7gF5Ktz5YIBK2H-Q";
     public final static String BOT_PREFIX = "-";
     public final static String OWNERID = "714284046892400731";
+    public final static String PATREON_LINK = "https://patreon.com/Granadis_Bot?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator";
 
     //paths
     public static final String ERROR_LOGS = "src/main/java/BackEnd/ErrorLogs.txt";
+    public static final String ALL_CHANNELS = "src/main/java/BackEnd/AllRecevingChannel.txt";
     public static final String ALL_TAGS = "src/main/java/Sources/AllTags.txt";
     public static final String FAVORITES = "src/main/java/Sources/Favorites.txt";
     public static final String BANNED = "src/main/java/Sources/Banned.txt";
+    public static final String REC = "src/main/java/Sources/Rec.txt";
+
+    // Old data
+    public static final String CHECK_DUPLICATE = "/Users/apple/Documents/GitHub/GranadisBot/src/main/java/AllSource/CheckFileDuplication.txt";
+    public static final String ALL_SOURCE = "/Users/apple/Documents/GitHub/GranadisBot/src/main/java/AllSource/Source.txt";
 
     public static final String AHEGAO = "src/main/java/Sources/Tags/Ahegao.txt";
     public static final String BIG_BREASTS = "src/main/java/Sources/Tags/Big Breasts.txt";
@@ -47,14 +53,19 @@ public class SourceLink {
     public static final String THREESOME = "src/main/java/Sources/Tags/Threesome.txt";
     public static final String UNCENSORED = "src/main/java/Sources/Tags/Uncensored.txt";
 
-
     public static boolean checkNSFW(GuildMessageReceivedEvent event) {
         return event.getChannel().isNSFW();
     }
 
     public static void wrongUsage(TextChannel tc, CommandInterface c) {
-        tc.sendMessage("Wrong Command Usage!\n" + c.getHelp()).queue();
+        EmbedBuilder wrongUsage = new EmbedBuilder();
+        wrongUsage.setColor(Color.red);
+        wrongUsage.setThumbnail("https://cdn.discordapp.com/emojis/836461044661878785.webp?size=240&quality=lossless");
+        wrongUsage.setTitle("ERROR: Wrong Command Usage!");
+        wrongUsage.setDescription(c.getHelp());
+        tc.sendMessage(wrongUsage.build()).queue();
     }
+
 
     public static void errorLogger(Exception e) throws IOException {
         String error = e.getMessage();
@@ -80,5 +91,40 @@ public class SourceLink {
 
     }
 
+    public static EmbedBuilder ConfirmedBlock() {
+        EmbedBuilder toReturn = new EmbedBuilder();
+        toReturn.setColor(Color.green);
+        toReturn.setTitle("Success: Daily Hentai");
+        toReturn.setDescription("You're all set! Daily hentai will be posted here every <t:1661320800:t>.");
+        toReturn.setThumbnail("https://cdn.discordapp.com/emojis/836487759619293234.webp?size=240&quality=lossless");
+        return toReturn;
+    }
+
+    public static EmbedBuilder removeHentai() {
+        EmbedBuilder removeBlock = new EmbedBuilder();
+        removeBlock.setTitle("Success: Remove Hentai");
+        removeBlock.setColor(Color.green);
+        removeBlock.setDescription("Hentai has been removed from this channel!");
+        removeBlock.setThumbnail("https://cdn.discordapp.com/emojis/836461044661878785.webp?size=240&quality=lossless");
+        return removeBlock;
+    }
+
+    public static EmbedBuilder error_does_not_exist() {
+        EmbedBuilder error = new EmbedBuilder();
+        error.setColor(Color.red);
+        error.setThumbnail("https://cdn.discordapp.com/emojis/836461044661878785.webp?size=240&quality=lossless");
+        error.setTitle("ERROR: This channel is not receving daily hentai!");
+        error.setDescription("Please use `-hhere` to receive daily hentai.");
+        return error;
+    }
+
+    public static void error_command_dne(TextChannel tc, CommandInterface c, List<String> args) {
+        EmbedBuilder wrongUsage = new EmbedBuilder();
+        wrongUsage.setColor(Color.red);
+        wrongUsage.setThumbnail("https://cdn.discordapp.com/emojis/836461044661878785.webp?size=240&quality=lossless");
+        wrongUsage.setTitle("The command `" + String.join("", args) + "` does not exist!");
+        wrongUsage.setDescription("Use `" + SourceLink.BOT_PREFIX + "help" + "` for a list of all my commands!");
+        tc.sendMessage(wrongUsage.build()).queue();
+    }
 
 }
