@@ -20,6 +20,8 @@ public class Manager {
         addCommand(new Help(this));
         addCommand(new Support());
         addCommand(new Recommend());
+        addCommand(new Code());
+        addCommand(new Image());
 
     }
 

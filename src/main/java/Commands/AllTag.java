@@ -3,6 +3,7 @@ package Commands;
 import Interface.CommandInterface;
 import Sources.SourceLink;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.awt.*;
 import java.io.File;
@@ -41,4 +42,5 @@ public class AllTag implements CommandInterface {
         return "Description: Displays all tags.\n" +
                 "Usage: `" + SourceLink.BOT_PREFIX + getCommand() + "`";
     }
+
 }

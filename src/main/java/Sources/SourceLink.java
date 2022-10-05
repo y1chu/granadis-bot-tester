@@ -2,6 +2,8 @@ package Sources;
 
 import Interface.CommandInterface;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.awt.*;
@@ -22,6 +24,7 @@ public class SourceLink {
     public static String BOT_TOKEN = "ODY3ODg0ODAxNDY4OTIzOTQ0.Ga_NEv.DUn8fu56VlbwGAxa-dwr5Z7gF5Ktz5YIBK2H-Q";
     public final static String BOT_PREFIX = "-";
     public final static String OWNERID = "714284046892400731";
+    public final static String OWNER_SERVER = "807846011627110471";
     public final static String PATREON_LINK = "https://patreon.com/Granadis_Bot?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator";
 
     //paths
@@ -102,7 +105,7 @@ public class SourceLink {
 
     public static EmbedBuilder removeHentai() {
         EmbedBuilder removeBlock = new EmbedBuilder();
-        removeBlock.setTitle("Success: Remove Hentai");
+        removeBlock.setTitle("Success: Removed Hentai");
         removeBlock.setColor(Color.green);
         removeBlock.setDescription("Hentai has been removed from this channel!");
         removeBlock.setThumbnail("https://cdn.discordapp.com/emojis/836461044661878785.webp?size=240&quality=lossless");
@@ -125,6 +128,15 @@ public class SourceLink {
         wrongUsage.setTitle("The command `" + String.join("", args) + "` does not exist!");
         wrongUsage.setDescription("Use `" + SourceLink.BOT_PREFIX + "help" + "` for a list of all my commands!");
         tc.sendMessage(wrongUsage.build()).queue();
+    }
+
+    public static void sendMessageWithReactions(MessageChannel channel, MessageEmbed embed, String... reactions) {
+        channel.sendMessage(embed).queue(msg -> {
+            for(String reaction : reactions) {
+                msg.addReaction(reaction).queue();
+            }
+        });
+
     }
 
 }

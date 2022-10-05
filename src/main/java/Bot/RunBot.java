@@ -1,7 +1,6 @@
 package Bot;
 
-import BackEnd.BotJoins;
-import BackEnd.SendDailyHentai;
+import BackEnd.*;
 import Commands.DailyHentai;
 import Sources.*;
 import net.dv8tion.jda.api.JDA;
@@ -14,8 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RunBot extends ListenerAdapter {
-    private static JDA jda;
-    private static int guildNum;
+    public static JDA jda;
 
     public static void main(String[] args) throws Exception {
 
@@ -23,9 +21,10 @@ public class RunBot extends ListenerAdapter {
         jda = JDABuilder.createDefault(SourceLink.BOT_TOKEN)
                 .addEventListeners(new Listener())
                 .build();
-        guildNum = jda.getGuilds().size();
         jda.addEventListener(new SendDailyHentai());
         jda.addEventListener(new BotJoins());
+        jda.addEventListener(new RecQueueSolver());
+        jda.addEventListener(new BotInfo());
 
         // initialize channel List with the database when restarting
         File sources = new File(SourceLink.ALL_CHANNELS);
@@ -39,13 +38,14 @@ public class RunBot extends ListenerAdapter {
     }
 
     public static class timerPresence extends TimerTask {
-        String[] presenceList = {"Hentai | -help", "Total Guilds: " + guildNum, "test msg", "another test msg", "rory", "hello"};
+
+        String[] presenceList = {"Hentai | -help", "Total Guilds: " + BotInfo.totalGuild, "Total Members: " + BotInfo.totalMembers, "Try: -rhentai [Optional_Tag]", "with Rory ❤️", "Support me! Use: -support for more info!"};
 
         @Override
         public void run() {
             // timer to get n
             int rng = SourceLink.rngPublic.nextInt(presenceList.length);
-            jda.getPresence().setActivity(Activity.playing(presenceList[rng]));
+            jda.getPresence().setActivity(Activity.streaming(presenceList[rng],"https://discord.bots.gg/bots/807849446553419786"));
         }
     }
 
